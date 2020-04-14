@@ -3,7 +3,7 @@ import subprocess
 import time
 from datetime import datetime
 from pseudorandom import prandom
-
+from hashlib import sha256
 class gpgforall:
     cols = [[],[],[]]
     chars = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz'+-*/._=9876543210<>" 
@@ -100,13 +100,30 @@ class gpgforall:
         self.times = times
         self.delet = "rm "+self.file
         time.sleep(self.times)
-        if True:
-            subprocess.run(self.delet,shell=1)
+        subprocess.run(self.delet,shell=1)
     def openreport(self,file):
         self.file = file
         self.file = self.file+".csv.gpg"
         self.out = self.file.replace(".gpg","")
         self.open = "gpg"+" -o "+self.out+" --decrypt "+self.file
         subprocess.run(self.open,shell=1)
-
+    def encryption(self,file):
+        self.file = file
+        self.encript = "gpg -e "+self.file
+        self.list = " gpg --list-keys"
+        subprocess.run(self.list,shell=1)
+        subprocess.run(self.encript,shell=1)
+    def decrypt(self,file):
+        self.file = file
+        self.file = self.file+".gpg"
+        self.out = self.file.replace(".gpg","")
+        self.decrypt = "gpg"+" -o "+out+" --decrypt "+self.file
+        self.list = " gpg --list-keys"
+        subprocess.run(self.list,shell=1)
+        subprocess.run(self.decrypt,shell=1)
+    def sha256aplay(self,password):
+        self.password = password
+        self.enpassword = sha256(self.password.encode('utf-8')).hexdigest()
+        return str(self.enpassword)
         
+

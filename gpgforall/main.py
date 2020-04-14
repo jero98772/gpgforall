@@ -39,19 +39,22 @@ def free():
 	print("="*75)
 	opcions="""
 	 (H)elp
-	 (D)eletreport, can create delet a report
+	 (E)ncrypt file
+	 (D)elete file
+	 (O)pen report , decrypt a report
+	 (W)rite away ,use deletreport, can create delet a report
 	 (R)eport, can create a report
 	 		-add 
 	 			passwords
 	 			encodepassword
 	 			reminder for passwords
-	 (O)pen report , decrypt a report
 	 (S)ymbols change , defatul chars  """+gpg4a.chars+"""
 	 (C)esar chipeer 
 	 		-decrypt 
 	 		-encryption
-	 (E)xit
+	 (R)un away ,exit
 	 (N)ew key
+	 (SHA256) convert text to sha256
 	 """
 	inp = input(opcions)
 	if "d" == inp.lower():
@@ -67,7 +70,7 @@ def free():
 			reminder = input("reminder for password:  ")
 			#c,key = gpg4a.cifrar(password)
 			gpg4a.cols[0].append(password)#password
-			gpg4a.cols[1].append("")#encodepassword
+			gpg4a.cols[1].append(str(gpg4a.sha256aplay(password)))#encodepassword
 			gpg4a.cols[2].append(reminder)#reminder
 
 			inp1 = input("add info ?[Y/N]\n")
@@ -100,13 +103,20 @@ def free():
 			input("preess enter")
 	elif "n" == inp.lower():
 		subprocess.run("gpg --full-generate-key",shell=1)
-	elif "e" == inp.lower():
+	elif "r" == inp.lower():
 		exit()
 	elif "o" == inp.lower():
 		file = input("decrypt a file:  ")
 		gpg4a.openreport(file)
 		gpg4a.deletreport(15,file)
-
+	elif "e" == inp.lower():
+		file = input("encrypt a file:  ")
+		gpg4a.encryption(file)
+	elif "sha256" == inp.lower():
+		encrypt = input("encrypt a text:  ")
+		encryptpass = gpg4a.sha256aplay(encrypt)
+		print(encryptpass)
+		input("preess enter")
 subprocess.run("clear",shell=1)
 print("="*75)
 print("                    __                 _ _ ")
