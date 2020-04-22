@@ -6,7 +6,7 @@ from pseudorandom import prandom
 from hashlib import sha256
 class gpgforall:
     cols = [[],[],[]]
-    chars = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz'+-*/._=9876543210<>" 
+    collectionschars = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz'+-*/._=9876543210<>" 
     rows = {"password":cols[0],"encodepassword":cols[1],"reminder":cols[2]}
     now = int(datetime.now().strftime('%S'))
     for i in range(now):
@@ -54,19 +54,20 @@ class gpgforall:
 
                 """)
     
-    def cifrar(self,text,key = diyrand,chars=chars):
-        self.chars = chars
+    def cifrar(self,text,key = diyrand,chars=collectionschars):
         self.key = key
         print("\n rembember the key",self.key,"\n")
+        self.chars = chars
         self.cifrar = ""
-        self.text = str(text)
+        self.text = text
 
         for self.char in self.text:
                 self.num = self.chars.find(self.char ) + self.key
                 self.mod = int(self.num) % len(self.chars)
-                self.cifrar = self.cifrar + str(self.chars[self.mod])
-        return self.cifrar,self.key 
-    def descifrar(self,text,key = diyrand,chars=chars):#"ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz'+-*/._=9876543210<>ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσ/ςΤτΥυΦφΧχΨψΩω'"):
+                self.cifrar = self.cifrar + (self.chars[self.mod])
+        #self.cifrar = self.cifrar
+        return str(self.cifrar),self.key 
+    def descifrar(self,text,key = diyrand,chars=collectionschars):#"ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz'+-*/._=9876543210<>ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσ/ςΤτΥυΦφΧχΨψΩω'"):
         self.chars = chars
         self.key = key
         print("\n rembember the key",self.key,"\n")
@@ -86,8 +87,9 @@ class gpgforall:
         self.encript = "gpg -e "+self.file
         self.row  = self.rows
 
-        subprocess.run(self.createcsv,shell=1)
+        #subprocess.run(self.createcsv,shell=1)
         f = pd.DataFrame(self.row)
+        print(f)
         f.to_csv(self.file)
         try:
             subprocess.run(self.list,shell=1)
@@ -123,7 +125,7 @@ class gpgforall:
         subprocess.run(self.decrypt,shell=1)
     def sha256aplay(self,password):
         self.password = password
-        self.enpassword = sha256(self.password.encode('utf-8')).hexdigest()
-        return str(self.enpassword)
+        self.enpassword = str(sha256(self.password.encode('utf-8')).hexdigest())
+        return self.enpassword
         
 
