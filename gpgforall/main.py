@@ -2,7 +2,7 @@ from gpgforall import gpgforall
 import subprocess
 from datetime import datetime
 def guide():
-	chars = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz'+-*/._=9876543210<>ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσ/ςΤτΥυΦφΧχΨψΩω'"
+	c#hars = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz'+-*/._=9876543210<>ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσ/ςΤτΥυΦφΧχΨψΩω'"
 	#chars = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 	t = datetime.now().strftime('%S')
 	t = int(t)
@@ -93,14 +93,16 @@ def free():
 			if "c" == inp2.lower():
 				cif = input("text for Cesar chipeer for encryption:  ")
 				key = int(input("key for Cesar chipeer for encryption:  "))
-				c = gpg4a.cifrar(cif, key)
+				chars = input("paste the chars:  ")
+				c = gpg4a.cifrar(cif, key,chars)
 				print("text encryption is: ",c)
 				input("preess enter")
 
 			elif "d" == inp2.lower():
 				des = input("text for Cesar chipeer for decrypt:  ")
 				key = int(input("key for Cesar chipeer for decrypt:  "))
-				d = gpg4a.cifrar(des, key)
+				chars = input("paste the chars:   ")
+				d = gpg4a.descifrar(des, key,chars)
 				print("text decrypt is: ",d)
 				input("preess enter")
 		elif "n" == inp.lower():
