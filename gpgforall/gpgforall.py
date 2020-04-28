@@ -55,16 +55,16 @@ class gpgforall:
                 """)
     
     def cifrar(self,text,key = diyrand,chars=collectionschars):
+        self.chars = chars
         self.key = key
         print("\n rembember the key",self.key,"\n")
-        self.chars = chars*len(text)
         self.cifrar = ""
-        self.text = text
+        self.text = str(text)
         for self.char in self.text:
                 self.num = self.chars.find(self.char ) + self.key
                 self.mod = int(self.num) % len(self.chars)
-                self.cifrar = self.cifrar + (self.chars[self.mod])
-        #self.cifrar = self.cifrar
+                self.cifrar = self.cifrar + str(self.chars[self.mod])
+        
         return str(self.cifrar),int(self.key) 
     def descifrar(self,text,key = diyrand,chars=collectionschars):#"ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz'+-*/._=9876543210<>ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσ/ςΤτΥυΦφΧχΨψΩω'"):
         self.chars = chars
