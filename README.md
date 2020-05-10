@@ -11,15 +11,15 @@
 
 is a set of programs for run gpg commands
 
-#main 
+## main 
 
 little progrma that use gpgforall  
 
-#gpgforall 
+## gpgforall 
 
 little script that use gpg basics comands  
 
-#pseudorandom
+## pseudorandom
 
 pseudorandom is a lilte code for generate pseudorandom
 
@@ -87,3 +87,9 @@ gpg4a.openreport()
 decrypt a csv file 
 
 report is a concept to save password in csv you can edit for what you want
+### contribute
+donation
+	
+	-  Bitcoin: tb1qgt4trnnsxdmfcpnydkmk8ht0y4esg4cdvzmhaz
+
+or make doing something from the TODO list
